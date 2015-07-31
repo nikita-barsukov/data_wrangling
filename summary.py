@@ -1,5 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import xml.etree.cElementTree as ET
+import pprint
 import re
+import codecs
 import json
 
 lower = re.compile(r'^([a-z]|_)*$')
@@ -15,9 +20,9 @@ def shape_element(element):
         node['type'] = element.tag
         if element.find('nd') is not None:
             for t in element.findall('nd'):
-                node.setdefault('node_refs', [])
-                node['node_refs'].append(t.attrib['ref'])
-
+               node.setdefault('node_refs', [])
+               node['node_refs'].append(t.attrib['ref'])
+                
         if element.find('tag') is not None:
             for t in element.findall('tag'):
                 if 'addr' in t.attrib['k']:
@@ -29,7 +34,7 @@ def shape_element(element):
                         node['address'][spl[1]] = t.attrib['v']
                 else:
                     node[t.attrib['k']] =  t.attrib['v']
-
+                        
         if 'visible' in element.attrib:
             node['visible'] = element.attrib['visible']
         if 'lat' in element.attrib:
@@ -38,25 +43,26 @@ def shape_element(element):
             if tag in element.attrib:
                 node.setdefault('created', {})
                 node['created'][tag] = element.attrib[tag]
+                
+        print(node)
         return node
     else:
         return None
 
 
 def process_map(file_in, pretty = False):
+    # You do not need to change this file
     file_out = "{0}.json".format(file_in)
     data = []
-    with open(file_out, "w") as fo:
+    with codecs.open(file_out, "w", encoding='utf-8') as fo:
         for _, element in ET.iterparse(file_in):
             el = shape_element(element)
             if el:
                 data.append(el)
                 if pretty:
-                    s = json.dumps(el, indent=2)+u"\n"
-                    strng = str(s.encode('utf8'))
-                    fo.write(strng)
+                    fo.write(json.dumps(el, indent=2, ensure_ascii=False)+"\n")
                 else:
-                    fo.write((json.dumps(el) + u"\n").encode('utf8'))
+                    fo.write(json.dumps(el,ensure_ascii=False) + "\n")
     return data
 
 data = process_map('map', True)
