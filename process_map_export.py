@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import xml.etree.cElementTree as ET
-import pprint
 import re
 import codecs
 import json
@@ -44,14 +43,12 @@ def shape_element(element):
                 node.setdefault('created', {})
                 node['created'][tag] = element.attrib[tag]
                 
-        print(node)
         return node
     else:
         return None
 
 
 def process_map(file_in, pretty = False):
-    # You do not need to change this file
     file_out = "{0}.json".format(file_in)
     data = []
     with codecs.open(file_out, "w", encoding='utf-8') as fo:
@@ -59,10 +56,7 @@ def process_map(file_in, pretty = False):
             el = shape_element(element)
             if el:
                 data.append(el)
-                if pretty:
-                    fo.write(json.dumps(el, indent=2, ensure_ascii=False)+"\n")
-                else:
-                    fo.write(json.dumps(el,ensure_ascii=False) + "\n")
+        fo.write(json.dumps(data, indent=2, ensure_ascii=False)+"\n")
     return data
 
 data = process_map('map', True)
