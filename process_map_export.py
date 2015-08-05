@@ -56,7 +56,7 @@ def process_map(file_in, pretty = False):
             el = shape_element(element)
             if el:
                 data.append(el)
-        fo.write(json.dumps(data, indent=2, ensure_ascii=False)+"\n")
+        fo.write(json.dumps(data , indent=2, ensure_ascii=False)+"\n")
     return data
 
 data = process_map('map', True)
