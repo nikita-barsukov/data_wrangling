@@ -32,5 +32,7 @@ def bbox_area(bbox):
     return(sq)
 
 b = bbox(coll)
+print('Bounding box, Kharkiv: ')
 print(b)
-print(bbox_area(b))
+print('Number of documents: ')
+print(coll.count())

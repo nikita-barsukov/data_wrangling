@@ -11,3 +11,5 @@ Map bounding box, E S W N:
 OSM export uploaded into http://1drv.ms/1SnZXM3
 
 Works on MacOS / Linux.
+
+Run `./analyze.sh` to generate all teh data and plots in the writeup.

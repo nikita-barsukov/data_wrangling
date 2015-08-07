@@ -1,5 +1,5 @@
 library('ggplot2')
-source('multiplot.R')
+source('visuals/multiplot.R')
 
 tstmps = read.csv('datasets/timestamps.csv', stringsAsFactors=F)
 tstmps$ts = strptime(tstmps$ts, '%Y-%m-%dT%H:%M:%S')
@@ -17,7 +17,7 @@ ds_days$Var1 = factor(ds_days$Var1, levels = rev(c("Monday", "Tuesday", "Wednesd
 
 line = qplot(data=ds_linechart, x=as.integer(Var1), y = Freq, geom='line') + 
   theme_bw() +
-  ggtitle('OSM data nodes by month') +
+  ggtitle('OSM elements by month') +
   scale_y_continuous(name='Number of entries') +
   scale_x_discrete(breaks=seq(from=1, to=100, by=12),
                    labels=linechart_lbls[seq(from=1, to=100, by=12)],
@@ -30,7 +30,7 @@ bars_month = qplot(data=ds_months, x=Var1, y = Freq, geom='bar',stat="identity")
   theme(axis.ticks=element_blank()) +
   scale_y_continuous(name='') +
   scale_x_discrete(name="") +
-  ggtitle('OSM data nodes\nbreakdown by month')
+  ggtitle('OSM elements\nbreakdown by month')
 
 
 bars_weeks = qplot(data=ds_days, x=Var1, y = Freq, geom='bar',stat="identity") + 
@@ -39,7 +39,7 @@ bars_weeks = qplot(data=ds_days, x=Var1, y = Freq, geom='bar',stat="identity") +
   theme(axis.ticks=element_blank()) +
   scale_y_continuous(name='Number of entries', limit=c(0,250000)) +
   scale_x_discrete(name="") +
-  ggtitle('OSM data nodes\nbreakdown by week day')
+  ggtitle('OSM elements\nbreakdown by week day')
   
 multiplot(bars_month, bars_weeks)
 

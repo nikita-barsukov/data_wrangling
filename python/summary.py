@@ -31,6 +31,7 @@ user_count_hash = [{"$group": {"_id": "$created.user",
                    {"$sort": {"count": -1}}]
 users_count = list(coll.aggregate(user_count_hash))
 pp.pprint(users_count[1:10])
+print('Unique users: ' + len(users_count))
 
 get_counts('$place', "Places count:")
 get_counts('$amenity', "Amenities count:")
