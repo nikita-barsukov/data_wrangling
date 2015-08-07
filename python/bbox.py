@@ -28,9 +28,7 @@ def bbox_area(bbox):
     R = 6371
     lat_max_rad = math.radians(bbox[0]['max'])
     lat_min_rad = math.radians(bbox[0]['min'])
-    print((math.sin(lat_max_rad) - math.sin(lat_min_rad)) * (bbox[1]['max'] - bbox[1]['min'])/180)
     sq = R**2 * math.pi * (math.sin(lat_max_rad) - math.sin(lat_min_rad)) * (bbox[1]['max'] - bbox[1]['min'])/180   
-    #sq = R**2 * math.pi * (math.radians(math.sin(bbox[0]['max'])) - math.radians(math.sin(bbox[0]['min'])))
     return(sq)
 
 b = bbox(coll)
