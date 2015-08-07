@@ -59,5 +59,5 @@ def process_map(file_in, pretty = False):
         fo.write(json.dumps(data , indent=2, ensure_ascii=False)+"\n")
     return data
 
-data = process_map('map', True)
+data = process_map('map_dumps/map_kharkiv', True)
 

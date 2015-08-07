@@ -2,3 +2,7 @@
 .idea/
 map
 map.json
+.Rproj.user
+.RData
+.Rhistory
+*.Rproj
