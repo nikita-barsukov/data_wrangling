@@ -18,3 +18,10 @@ echo "OSM dumps converted to JSON"
 python3 python/import_to_mongo.py
 echo "Data imported to MongoDB"
 
+echo "----------"
+echo "Producing summary analysis"
+python3 python/summary.py
+
+echo "----------"
+echo "Identifying problems"
+python3 python/checks_and_problems.py
