@@ -9,6 +9,11 @@ coll_kh = client['osm']['kharkiv']
 coll_sthlm = client['osm']['sthlm']
 coll_cph = client['osm']['cph']
 
+print('Number of documents.')
+print('Stockholm:' + str(coll_sthlm.count()))
+print('Copenhagen:' + str(coll_cph.count()))
+print('Kharkiv:' + str(coll_kh.count()))
+
 def get_counts(field, note, col):
     print("------------")
     print(note)

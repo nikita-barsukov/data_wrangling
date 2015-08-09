@@ -23,5 +23,9 @@ echo "Producing summary analysis"
 python3 python/summary.py
 
 echo "----------"
-echo "Identifying problems"
+echo "Identifying and fixing problems"
 python3 python/checks_and_problems.py
+
+echo "Identifying and fixing problems"
+python3 python/checks_and_problems.py
+python3 python/bad_websites.py
